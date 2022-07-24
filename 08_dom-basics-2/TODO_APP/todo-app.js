@@ -69,7 +69,7 @@
     // доделать кнопку готово и удалить
 
     let storage = window.localStorage;
-    let storageObject = storage.getItem(keyStorage.toString()) ? JSON.parse(storage.getItem(keyStorage.toString())) : [];
+    let storageObject = storage.getItem(keyStorage.toString()) ? JSON.parse(storage.getItem(keyStorage.toString())) : []; // вытягиваем localStorage
     let tempStorageObj = null;
     let raw = null;
     let todoAppTitle = createAppTitle(title);
@@ -86,13 +86,13 @@
 
     keysStaticObj.length > 0 ? storageObject = Object.assign({}, storageObject, staticTodoObj) : false;
     storage.setItem(keyStorage.toString(), JSON.stringify(storageObject));
-    tempStorageObj = JSON.parse(storage.getItem(keyStorage.toString()));
+    tempStorageObj = JSON.parse(storage.getItem(keyStorage.toString())); // 3 статических дела в localStorage
 
     (function () {
       let values = Object.values(storageObject);
       for (let value of values) {
         todoItem = createTodoItem(value['name'], value['done']);
-        todoList.append(todoItem.item);
+        todoList.append(todoItem.item); // вывод всех записей из localStorage (не работают кнопки готово и удалить)
       }
     })();
 
@@ -104,7 +104,7 @@
         clearTimeout(timeout);
         timeout = setTimeout(changeAttributeDisabled, millisec);
       }
-    })
+    }) // disable кнопки добавить дело
 
     todoItemForm.form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -113,7 +113,7 @@
       }
 
       todoItem = createTodoItem(todoItemForm.input.value);
-      changeStorage(keyStorage.toString());
+      changeStorage(keyStorage.toString()); // запись в localStorage
 
       todoItem.doneButton.addEventListener('click', function () {
         todoItem.item.classList.toggle('list-group-item-success');
@@ -121,7 +121,7 @@
       todoItem.deleteButton.addEventListener('click', function () {
         if (confirm('Вы уверены?')) {
           let removeName = todoItem.item.firstChild.textContent;
-          changeStorage(keyStorage.toString(), true, removeName);
+          changeStorage(keyStorage.toString(), true, removeName); // удаление с localStorage, del = true
           todoItem.item.remove();
         }
       })
@@ -140,12 +140,12 @@
       tempStorageObj = null;
       if (!del) {
         storageObject[Object.keys(storageObject).length] = { name: todoItemForm.input.value, done: false };
-        storage.setItem(key.toString(), JSON.stringify(storageObject));
+        storage.setItem(key.toString(), JSON.stringify(storageObject)); // добавление
       } else {
         tempStorageObj = Object.entries(storageObject);
         console.log(tempStorageObj);
         storage.setItem(key.toString(), JSON.stringify(tempStorageObj));
-        return true;
+        return true; // удаление
       }
     }
   }
