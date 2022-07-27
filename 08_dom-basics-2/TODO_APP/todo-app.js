@@ -69,7 +69,7 @@
     // доделать кнопку готово и удалить
 
     let storage = window.localStorage;
-    let storageObject = storage.getItem(keyStorage.toString()) ? JSON.parse(storage.getItem(keyStorage.toString())) : []; // вытягиваем localStorage
+    let storageObject = storage.getItem(keyStorage.toString()) ? JSON.parse(storage.getItem(keyStorage.toString())) : [];
     let tempStorageObj = null;
     let raw = null;
     let todoAppTitle = createAppTitle(title);
@@ -86,13 +86,15 @@
 
     keysStaticObj.length > 0 ? storageObject = Object.assign({}, storageObject, staticTodoObj) : false;
     storage.setItem(keyStorage.toString(), JSON.stringify(storageObject));
-    tempStorageObj = JSON.parse(storage.getItem(keyStorage.toString())); // 3 статических дела в localStorage
+    tempStorageObj = JSON.parse(storage.getItem(keyStorage.toString()));
 
     (function () {
       let values = Object.values(storageObject);
       for (let value of values) {
-        todoItem = createTodoItem(value['name'], value['done']);
-        todoList.append(todoItem.item); // вывод всех записей из localStorage (не работают кнопки готово и удалить)
+        // todoItem = createTodoItem(value['name'], value['done']);
+        // todoList.append(todoItem.item);
+        createNewItems(value['name'], value['done']);
+        console.log(value['name'], value['done']);
       }
     })();
 
@@ -104,7 +106,7 @@
         clearTimeout(timeout);
         timeout = setTimeout(changeAttributeDisabled, millisec);
       }
-    }) // disable кнопки добавить дело
+    })
 
     todoItemForm.form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -112,8 +114,16 @@
         return;
       }
 
-      todoItem = createTodoItem(todoItemForm.input.value);
-      changeStorage(keyStorage.toString()); // запись в localStorage
+      createNewItems();
+    });
+
+    function createNewItems(name = null, done = null) {
+      if (done === null) {
+        todoItem = createTodoItem(todoItemForm.input.value);
+      } else {
+        todoItem = createTodoItem(name, done);
+        console.log(todoItem);
+      }
 
       todoItem.doneButton.addEventListener('click', function () {
         todoItem.item.classList.toggle('list-group-item-success');
@@ -121,7 +131,7 @@
       todoItem.deleteButton.addEventListener('click', function () {
         if (confirm('Вы уверены?')) {
           let removeName = todoItem.item.firstChild.textContent;
-          changeStorage(keyStorage.toString(), true, removeName); // удаление с localStorage, del = true
+          changeStorage(keyStorage.toString(), true, removeName);
           todoItem.item.remove();
         }
       })
@@ -130,7 +140,7 @@
 
       todoItemForm.input.value = '';
       changeAttributeDisabled(true);
-    });
+    }
 
     function changeAttributeDisabled(off = false) {
       !off ? todoItemForm.button.removeAttribute('disabled') : todoItemForm.button.setAttribute('disabled', 'true');
@@ -140,12 +150,12 @@
       tempStorageObj = null;
       if (!del) {
         storageObject[Object.keys(storageObject).length] = { name: todoItemForm.input.value, done: false };
-        storage.setItem(key.toString(), JSON.stringify(storageObject)); // добавление
+        storage.setItem(key.toString(), JSON.stringify(storageObject));
       } else {
         tempStorageObj = Object.entries(storageObject);
         console.log(tempStorageObj);
         storage.setItem(key.toString(), JSON.stringify(tempStorageObj));
-        return true; // удаление
+        return true;
       }
     }
   }
