@@ -10,9 +10,9 @@
   <script defer src="./todo-app.js"></script>
   <script>
     staticTodoObj = [
-      { name: 'Зайти в тудушку', done: true },
-      { name: 'Улыбнуться', done: true },
-      { name: 'Создать свое собственное первое дело', done: false },
+      {id: 0, name: 'Зайти в тудушку', done: true },
+      {id: 1, name: 'Улыбнуться', done: true },
+      {id: 2, name: 'Создать свое собственное первое дело', done: false },
     ];
     document.addEventListener('DOMContentLoaded', function() {
       createTodoApp(document.getElementById('todo-app'), 'Дела Германа', staticTodoObj, 'german');
