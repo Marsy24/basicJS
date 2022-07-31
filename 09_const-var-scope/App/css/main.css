@@ -1,0 +1,179 @@
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Square Peg', cursive;
+  background-color: rgba(0,0,0,.8);
+  max-width: 1800px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+}
+
+.container.is-playing {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+
+form {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+form > input {
+  margin-bottom: 30px;
+}
+
+input {
+  width: 500px;
+  outline: none;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: 'Roboto';
+}
+
+input::placeholder {
+  font-family: 'Square Peg';
+}
+
+.btn {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: white;
+  transition: background .3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #0046b8;
+}
+
+.btn:disabled {
+  background-color: gray;
+}
+
+.btn:not(:disabled) {
+  cursor: pointer;
+}
+
+ul {
+  visibility: hidden;
+}
+
+.is-playing ul {
+  display: grid;
+  place-items: center;
+  gap: 15px;
+  visibility: visible;
+  font-family: 'Roboto';
+}
+
+.item {
+  perspective: 1000px;
+}
+
+.card-wrapper.is-active, .card-wrapper.is-opened {
+  transform: rotateY(180deg);
+}
+
+.card-wrapper.is-opened .text {
+  color: green;
+  font-size: 30px;
+}
+
+.card-wrapper {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 0.5s ease-in-out;
+}
+
+.text {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+
+  transition: color .3s ease-in-out, font-size .3s ease-in-out;
+}
+
+.timer {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  font-family: 'Roboto';
+  font-size: 32px;
+}
+
+.timer h2 {
+  margin: 0;
+}
+
+.container.is-playing .timer {
+  display: block !important;
+}
+
+.restart-btn {
+  position: absolute;
+  top: 30%;
+  left: 0;
+}
