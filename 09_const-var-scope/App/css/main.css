@@ -10,12 +10,25 @@ html {
   box-sizing: inherit;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+input,
+textarea {
+  border-radius: 0px;
+}
+
 body {
-  font-family: 'Square Peg', cursive;
-  background-color: rgba(0,0,0,.8);
-  max-width: 1800px;
+  max-width: 1200px;
+  padding: 40px 15px;
   margin: 0 auto;
-  height: 100vh;
 }
 
 .list-reset {
@@ -28,6 +41,7 @@ body {
   padding: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .flex {
@@ -50,130 +64,86 @@ body {
   overflow: hidden;
 }
 
-.container {
-  position: relative;
+h1,h2 {margin: 0;}
+
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 30px;
 }
 
-.container.is-playing {
+.card {
   display: flex;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
-
-form {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  width: 100%;
-}
-
-form > input {
-  margin-bottom: 30px;
-}
-
-input {
-  width: 500px;
-  outline: none;
-  border: none;
-  padding: 10px;
+  width: 15%;
+  height: 180px;
+  margin-bottom: 10px;
+  background-color: rgb(65, 33, 91);
+  color: transparent;
+  font-size: 42px;
+  font-weight: bold;
   border-radius: 10px;
-  font-family: 'Roboto';
+  cursor: pointer;
+  transition: background-color .3s ease-in, color .3s ease-in, transform .3s ease-in;
 }
 
-input::placeholder {
-  font-family: 'Square Peg';
+
+
+.card.open {
+  background-color: rgb(229, 200, 165);
+  color: rgb(60, 52, 42);
 }
 
-.btn {
-  padding: 15px;
-  border-radius: 10px;
-  background-color: #007bff;
+.card.success {
+  background-color: rgb(16, 90, 31);
   color: white;
-  transition: background .3s ease-in-out;
+  transform: scale(.95);
 }
 
-.btn:hover {
-  background-color: #0046b8;
-}
-
-.btn:disabled {
-  background-color: gray;
-}
-
-.btn:not(:disabled) {
+label {
   cursor: pointer;
 }
 
-ul {
-  visibility: hidden;
+#game,
+.main__title {
+  display: none;
 }
 
-.is-playing ul {
-  display: grid;
-  place-items: center;
-  gap: 15px;
-  visibility: visible;
-  font-family: 'Roboto';
-}
-
-.item {
-  perspective: 1000px;
-}
-
-.card-wrapper.is-active, .card-wrapper.is-opened {
-  transform: rotateY(180deg);
-}
-
-.card-wrapper.is-opened .text {
-  color: green;
-  font-size: 30px;
-}
-
-.card-wrapper {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: 0.5s ease-in-out;
-}
-
-.text {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+#modal_01 {
+  position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-
-  transition: color .3s ease-in-out, font-size .3s ease-in-out;
+  background: rgba(0, 0, 0, 0.8);
 }
 
-.timer {
-  position: absolute;
-  top: 10%;
-  left: 0;
-  font-family: 'Roboto';
-  font-size: 32px;
+
+.pop-up__container {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+	position: relative;
+	margin: 10% auto;
+	padding: 30px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
 }
 
-.timer h2 {
-  margin: 0;
+.pop-up__title {
+  margin-bottom: 15px;
 }
 
-.container.is-playing .timer {
-  display: block !important;
+.pop-up__label {
+  margin-bottom: 15px;
 }
 
-.restart-btn {
-  position: absolute;
-  top: 30%;
-  left: 0;
+.pop-up__btn {
+  max-width: 30%;
+  align-self: center;
 }

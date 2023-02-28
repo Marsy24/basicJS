@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Square+Peg&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script defer type="module" src="js/main.js"></script>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Игра в пары</title>
+</head>
+
+<body>
+  <section class="main">
+    <div class="container">
+      <h1 class="main__title">Пары</h1>
+      <div class="main__timer timer" hidden>
+        <span class="timer__title">Таймер</span>
+        <div class="timer__text"></div>
+      </div>
+      <div class="game" id="game">
+
+      </div>
+
+      <div id="modal_01" class="main__pop-up pop-up start-modal">
+        <div class="pop-up__container">
+          <h2 class="pop-up__title second-title">Настройки</h2>
+          <label class="pop-up__label">
+            Количество карточке на поле
+            <input class="pop-up__input" type="text" name="" id="count">
+            (кратное двум, но не менее 6)
+          </label>
+          <label class="pop-up__label">
+            Время(в секундах)
+            <input type="text" class="pop-up__input sec" id="sec">
+          </label>
+          <button class="pop-up__btn">Старт!</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
