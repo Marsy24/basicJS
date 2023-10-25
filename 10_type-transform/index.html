@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студенты</title>
+    <script defer type="module" src="js/main.js"></script>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <section class="main">
+        <div class="container">
+            <h1>Студенты</h1>
+            <input type="checkbox" id="open-form">
+            <label class="btn btn-primary" for="open-form" id="btn-open-form">Добавить студента</label>
+            <div class="filter-wrapper">
+                <input type="text" id="search-fio" placeholder="Поиск по ФИО" class="form-control mb-3 search-input">
+                <input type="text" id="search-fac" placeholder="Поиск ФАК" class="form-control mb-3 search-input">
+                <div class="mb-3">
+                    <input type="text" name="" id="search-studyStart" placeholder="Год начала обучения" class="form-control search-input">
+                    <input type="text" name="" id="search-studyEnd" placeholder="Год окончания обучения" class="form-control search-input">
+                </div>
+                <button id="btn-filter" class="btn btn-primary">Применить фильтр</button>
+            </div>
+            <form action="" id="add-student" class="popup mb-3">
+                <div class="mb-3 input-wrapper"><input data-required="true" data-max-length="20" data-min-length="3" type="text" placeholder="Фамилия" id="input-surname" class="input-fio form-control input-val"></div>
+                <div class="mb-3 input-wrapper"><input data-required="true" data-min-length="3" type="text" placeholder="Имя" id="input-name" class="input-fio form-control input-val"></div>
+                <div class="mb-3 input-wrapper"><input data-required="true" data-min-length="3" type="text" placeholder="Отчествао" id="input-lastname" class="input-fio form-control input-val"></div>
+                <div class="mb-3 input-wrapper"><input data-required="true" data-number-start="2000" type="number" placeholder="Год поступления" id="input-studyStart" class="form-control input-val"></div>
+                <div class="mb-3 input-wrapper"><input data-required="true" data-date-birth-day="1900, 0, 1" type="date" id="input-birthDate" class="form-control input-val"></div>
+                <div class="mb-3 input-wrapper"><input data-required="true" data-min-length="3" data-max-length="20" type="text" placeholder="Факультет" id="input-fac" class="form-control input-val"></div>
+                <button class="btn btn-primary">Добавить</button>
+                <label for="open-form" id="closePopup">+</label>
+            </form>
+            <table class="students-table table table-striped">
+                <thead>
+                    <th data-column="fio">ФИО</th>
+                    <th data-column="fac">Факультет</th>
+                    <th data-column="birthDate">Дата рождения</th>
+                    <th data-column="studyStart">Начало учебы</th>
+
+                </thead>
+                <tbody id="students-list">
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
