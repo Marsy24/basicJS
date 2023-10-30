@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # editorconfig.org
 root = true
 
@@ -11,3 +12,15 @@ insert_final_newline = true
 
 [*.md]
 trim_trailing_whitespace = false
+=======
+root=true
+
+[*]
+charset=utf-8
+end_of_line=lf
+trim_trailing_whitespace=true
+insert_final_newline=true
+indent_style=space
+indent_size=2
+tab_width=4
+>>>>>>> c0e0c997549c9bbc987721dacfe45609dc686221
